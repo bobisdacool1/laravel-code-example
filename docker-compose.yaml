@@ -1,0 +1,30 @@
+version: "3.3"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Nginx.Dockerfile
+    ports:
+      - 80:80
+    links:
+      - fpm
+    volumes:
+      - ./:/var/www/laravel-code-example
+  fpm:
+    build:
+      context: .
+      dockerfile: docker/Fpm.Dockerfile
+    volumes:
+      - ./:/var/www/laravel-code-example
+      - ./docker/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - postresql
+  postgresql:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "laravel_code_example"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
