@@ -23,6 +23,7 @@ Route::controller(ProductController::class)
         Route::get('/', function () {
             redirect('/index');
         });
+
         Route::get('/index', 'index')->name('product.index');
         Route::get('/{id}', 'show')->name('product.show');
     });

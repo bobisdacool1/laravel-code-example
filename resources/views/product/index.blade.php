@@ -22,7 +22,11 @@
             @foreach($products as $product)
 
                 <tr>
-                    <th>{{$product->id}}</th>
+                    <th>
+                        <a href="{{route('product.show', ['id' => $product->id])}}">
+                            {{$product->id}}
+                        </a>
+                    </th>
                     <td>{{$product->article}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->status}}</td>

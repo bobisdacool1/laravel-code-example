@@ -51,9 +51,14 @@ class ProductController extends Controller
      * @param Product $product
      * @return Response
      */
-    public function show(Product $product)
+    public function show(int $productId)
     {
-        //
+        $product = Product::where('id', $productId)->first();
+
+        return response()
+            ->view('product.show', [
+                'product' => $product,
+            ], 200);
     }
 
     /**
