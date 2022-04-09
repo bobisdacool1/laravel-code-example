@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use function MongoDB\BSON\toJSON;
 
 class ProductFactory extends Factory
 {
@@ -20,7 +19,7 @@ class ProductFactory extends Factory
     {
         $jsonData = [];
         for ($i = 0; $i < 10; $i++) {
-            $jsonData[] = [$this->faker->words(2, true) => $this->faker->sentence()];
+            $jsonData[$this->faker->words(2, true)] = $this->faker->sentence();
         }
 
         return [

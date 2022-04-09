@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -16,7 +16,12 @@ class ProductController extends Controller
      */
     public function index(): Response
     {
+        $products = Product::all()->sortBy('id')->take(15);
 
+        return response()
+            ->view('product.index', [
+                'products' => $products,
+            ], 200);
     }
 
     /**
@@ -32,7 +37,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @param StoreProductRequest $request
      * @return Response
      */
     public function store(StoreProductRequest $request)
@@ -43,7 +48,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function show(Product $product)
@@ -54,7 +59,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function edit(Product $product)
@@ -65,8 +70,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
+     * @param UpdateProductRequest $request
+     * @param Product $product
      * @return Response
      */
     public function update(UpdateProductRequest $request, Product $product)
@@ -77,7 +82,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function destroy(Product $product)
