@@ -23,7 +23,7 @@ function getPropertyBlockWithIndex(index) {
         "            </div>"
 }
 
-$('form#create-product').on('submit', function (e) {
+$('form#create-product, form#edit-product').on('submit', function (e) {
     let form = $(e.currentTarget);
     let inputsVal = form.find('.form-control.property.value').toArray();
 

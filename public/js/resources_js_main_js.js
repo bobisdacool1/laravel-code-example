@@ -22,7 +22,7 @@
             return "<div class=\"property-group row mb-3 d-flex justify-content-space-between\">\n" + "                <div class=\"col-6\">\n" + "                    <input type=\"text\" class=\"form-control property key\" name=\"data[" + index + "][key]\"/>\n" + "                </div>\n" + "                <div class=\"col-6\">\n" + "                    <input type=\"text\" class=\"form-control property value\" name=\"data[" + index + "][value]\"/>\n" + "                </div>\n" + "            </div>";
         }
 
-        $('form#create-product').on('submit', function (e) {
+        $('form#create-product, form#edit-product').on('submit', function (e) {
             var form = $(e.currentTarget);
             var inputsVal = form.find('.form-control.property.value').toArray();
             inputsVal.forEach(function callback(input, index, array) {

@@ -113,11 +113,32 @@ class ProductController extends Controller
      *
      * @param UpdateProductRequest $request
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request)
     {
-        //
+        //todo: remove code duplicate with create method
+        $request->validated();
+
+        $productId = $request->input('id');
+
+        $product = Product::where('id', $productId)->first();
+
+        $product->name = $request->input('name');
+        $product->article = $request->input('article');
+        $product->status = $request->input('status');
+        $product->data = $request->input('data');
+
+        $product->created_at = Carbon::now();
+        $product->updated_at = Carbon::now();
+
+        $isProductSaved = $product->save();
+
+        if ($isProductSaved) {
+            return response()->redirectTo(route('product.index'));
+        } else {
+            return response()->redirectTo(route('product.edit', ['id' => $productId]));
+        }
     }
 
     /**

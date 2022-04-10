@@ -46,10 +46,11 @@
             @foreach($product->data as $productDataRowKey => $productDataRowValue)
                 <div class="property-group row mb-3 d-flex justify-content-space-between">
                     <div class="col-5">
-                        <input type="text" class="form-control property key" disabled value="{{$productDataRowKey}}"/>
+                        <input type="text" class="form-control property key" name="data[{{$loop->index}}][key]"
+                               value="{{$productDataRowKey}}"/>
                     </div>
                     <div class="col-5">
-                        <input type="text" class="form-control property value" name="data[{{$productDataRowKey}}]"
+                        <input type="text" class="form-control property value" name="data[{{$loop->index}}][value]"
                                value="{{$productDataRowValue}}"/>
                     </div>
                     <div class="col-2">
