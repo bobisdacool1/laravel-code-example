@@ -22,6 +22,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Updated at</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,16 @@
                         </td>
                         <td>{{$product->created_at}}</td>
                         <td>{{$product->updated_at}}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href="{{route('product.delete', ['id' => $product->id])}}" type="button"
+                                   class="btn btn-danger">Delete</a>
+                                <a href="{{route('product.show', ['id' => $product->id])}}" type="button"
+                                   class="btn btn-warning">Edit</a>
+                                <a href="{{route('product.show', ['id' => $product->id])}}" type="button"
+                                   class="btn btn-success">View</a>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </table>

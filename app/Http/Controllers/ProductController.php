@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DestroyProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -34,7 +35,7 @@ class ProductController extends Controller
     public function create(): Response
     {
         return response()
-            ->view('product.create', [], 200);
+            ->view('product.create');
     }
 
     /**
@@ -43,7 +44,7 @@ class ProductController extends Controller
      * @param StoreProductRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request): Response
     {
         $request->validated();
 
@@ -72,7 +73,7 @@ class ProductController extends Controller
      * @param Product $product
      * @return Response
      */
-    public function show(int $productId)
+    public function show(int $productId): Response
     {
         $product = Product::where('id', $productId)->first();
 
@@ -80,6 +81,17 @@ class ProductController extends Controller
             ->view('product.show', [
                 'product' => $product,
             ], 200);
+    }
+
+    /**
+     * Show the form for deleting specified resource.
+     *
+     * @return Response
+     */
+    public function delete(int $id): Response
+    {
+        return response()
+            ->view('product.delete', ['id' => $id]);
     }
 
     /**
@@ -109,10 +121,28 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Product $product)
+    public function destroy(DestroyProductRequest $request): RedirectResponse
     {
-        //
+        $request->validated();
+
+        $productId = (int)$request->input('id');
+
+        $product = Product::where('id', $productId)->first();
+
+        if ($product != null) {
+            if ($product->delete()) {
+                return response()->redirectTo(route('product.index'));
+            } else {
+                $error = ['server error' => 'Request failed with server side'];
+            }
+        } else {
+            $error = ['bad request' => 'This user doesn\'t exist!'];
+        }
+
+        return response()
+            ->redirectTo(route('product.delete', ['id' => $productId]))
+            ->withErrors($error);
     }
 }
