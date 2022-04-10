@@ -37,8 +37,8 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'article' => 'required|min:5',
-            'name' => 'required|min:5',
+            'article' => "required|min:10|alpha_num|unique:products,article",
+            'name' => 'required|min:10',
             'status' => [
                 'required',
                 Rule::in(['available', 'unavailable'])
