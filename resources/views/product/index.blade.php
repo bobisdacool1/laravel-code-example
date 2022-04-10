@@ -48,7 +48,7 @@
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <a href="{{route('product.delete', ['id' => $product->id])}}" type="button"
                                    class="btn btn-danger">Delete</a>
-                                <a href="{{route('product.show', ['id' => $product->id])}}" type="button"
+                                <a href="{{route('product.edit', ['id' => $product->id])}}" type="button"
                                    class="btn btn-warning">Edit</a>
                                 <a href="{{route('product.show', ['id' => $product->id])}}" type="button"
                                    class="btn btn-success">View</a>

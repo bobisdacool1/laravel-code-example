@@ -97,12 +97,15 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Product $product
+     * @param int $productId
      * @return Response
      */
-    public function edit(Product $product)
+    public function edit(int $productId)
     {
-        //
+        $product = Product::where('id', $productId)->first();
+
+        return response()
+            ->view('product.edit', ['product' => $product]);
     }
 
     /**

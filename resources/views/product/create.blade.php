@@ -37,7 +37,7 @@
         <div class="mb-3" id="properties">
 
         </div>
-        <button type="button" id="add-property-field" class="btn btn-primary">Add more property field</button>
+        <button type="button" id="add-property-field" class="btn btn-secondary">Add more property field</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection

@@ -32,6 +32,9 @@ Route::controller(ProductController::class)
 
         Route::get('/delete/{id}', 'delete')->name('product.delete');
         Route::post('/destroy', 'destroy')->name('product.destroy');
+
+        Route::get('/edit/{id}', 'edit')->name('product.edit');
+        Route::post('/update', 'update')->name('product.update');
     });
 Route::get('/info', function () {
     echo phpinfo();

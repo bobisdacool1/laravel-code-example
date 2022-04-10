@@ -8,7 +8,6 @@
 
 // below things are really horrible but i don't know how to do it properly, im not js enjoyer after all
         addPropsBlock(0);
-        addPropsBlock(1);
         var index = 2;
         $('#add-property-field').on('click', function () {
             addPropsBlock(index);
@@ -31,6 +30,9 @@
                 $(input).attr('name', "data[".concat(key, "]"));
             });
             form.find('.form-control.property.key').prop('disabled', true);
+        });
+        $('.remove-property').on('click', function (e) {
+            $(e.currentTarget).closest('.property-group').remove();
         });
 
         /***/
