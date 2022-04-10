@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'name' => $this->faker->words(2, true),
             'article' => $this->faker->unique()->lexify("????-????-????"),
             'status' => $this->faker->boolean() ? "available" : "unavailable",
-            'data' => json_encode($jsonData),
+            'data' => $jsonData,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

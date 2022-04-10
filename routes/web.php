@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    redirect('/product/index');
+    return "im here!";
 });
 
 Route::controller(ProductController::class)
@@ -25,5 +25,10 @@ Route::controller(ProductController::class)
         });
 
         Route::get('/index', 'index')->name('product.index');
+        Route::get('/create', 'create')->name('product.create');
+        Route::post('/store', 'store')->name('product.store');
         Route::get('/{id}', 'show')->name('product.show');
     });
+Route::get('/info', function () {
+    echo phpinfo();
+});

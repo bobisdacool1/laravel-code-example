@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,13 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'article' => 'required|min:5',
+            'name' => 'required|min:5',
+            'status' => [
+                'required',
+                Rule::in(['available', 'unavailable'])
+            ],
+            'data' => 'nullable|array'
         ];
     }
 }
