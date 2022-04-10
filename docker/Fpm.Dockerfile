@@ -1,5 +1,7 @@
 FROM php:8.1-fpm
 
+ADD docker/php/conf.d /usr/local/etc/php/conf.d
+
 RUN apt-get update \
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \

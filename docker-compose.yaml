@@ -17,7 +17,7 @@ services:
       dockerfile: docker/Fpm.Dockerfile
     volumes:
       - ./:/var/www/laravel-code-example
-      - ./docker/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
     links:
       - postresql
   postgresql:
