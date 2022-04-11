@@ -1,21 +1,23 @@
 # How to use this app
 
 1. **Install dependencies**  
-   `composer u` - for php modules  
-   `npm i` - for js modules
+   `composer u`  
+   `npm i`
 2. **Run docker**  
-   `docker compose build` - build  
-   `docker compose up -d` - up services
+   `docker compose build`  
+   `docker compose up -d`
 3. **Go to docker fpm container**  
-   `docker ps | grep laravel_task_fpm`  
+   `docker ps | grep fpm`  
    copy id (first column)  
-   `docker exec -it <id> bash` - go to php fpm container  
+   `docker exec -it <id> bash`  
    `cd /var/www/laravel-code-example`
-4. **Generate laravel key**  
+4. **Create .env file**  
+   `cp .env.example .env`
+5. **Generate laravel key**  
    `php artisan key:generate`
-5. **Migrate**  
+6. **Migrate**  
    `php artisan migrate`
-6. **Seed db**  
+7. **Seed db**  
    `php artisan db:seed`
-7. App is available on http://localhost:8098
+8. App is available on http://localhost:8098
 

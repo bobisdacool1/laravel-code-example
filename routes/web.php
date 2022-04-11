@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "im here!";
+    return redirect(route('product.index'));
 });
 
 Route::controller(ProductController::class)
